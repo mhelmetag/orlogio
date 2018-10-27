@@ -97,13 +97,13 @@ class _HomeState extends State<Home> {
           children: <Widget>[
             new Text(
               stringTime(),
-              style: TextStyle(fontSize: 50)
+              style: TextStyle(fontSize: 100)
             ),
             new Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
                 new RaisedButton(
-                  onPressed: (_running && _currentTimeSeconds == 0) ? null : start,
+                  onPressed: (_running || _currentTimeSeconds == 0) ? null : start,
                   child: new Text('Start')
                 ),
                 new RaisedButton(
