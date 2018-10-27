@@ -2,6 +2,8 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
+import 'clock.dart';
+
 class Home extends StatefulWidget {
   final String title;
   final Duration tickDuration;
@@ -60,30 +62,19 @@ class _HomeState extends State<Home> {
     }
   }
 
-  String stringTime() {
-    var minutes = (_currentTimeSeconds ~/ 60);
-    var minutesString = minutes.toString().padLeft(2, '0');
-
-    var seconds = _currentTimeSeconds - (minutes * 60);
-    var secondsString = seconds.toString().padLeft(2, '0');
-
-    return "$minutesString:$secondsString";
-  }
-
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
-        title: new Text(widget.title)
+        title: new Center(
+          child: new Text(widget.title)
+        )
       ),
       body: new Center(
         child: new Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            new Text(
-              stringTime(),
-              style: TextStyle(fontSize: 100)
-            ),
+            new Clock(currentTimeSeconds: _currentTimeSeconds),
             new Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
