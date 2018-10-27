@@ -1,8 +1,5 @@
-# pomodoro_clock
+# Pomodoro Clock
 
-A new Flutter application.
+It's a clock... or a timer... or something.
 
-## Getting Started
 
-For help getting started with Flutter, view our online
-[documentation](https://flutter.io/).
