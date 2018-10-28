@@ -2,7 +2,8 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
-import 'clock.dart';
+import '../components/clock.dart';
+import '../components/clock_controls.dart';
 
 class Home extends StatefulWidget {
   final String title;
@@ -75,22 +76,12 @@ class _HomeState extends State<Home> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             new Clock(currentTimeSeconds: _currentTimeSeconds),
-            new Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: <Widget>[
-                new RaisedButton(
-                  onPressed: (_running || _currentTimeSeconds == 0) ? null : start,
-                  child: new Text('Start')
-                ),
-                new RaisedButton(
-                  onPressed: _running ? stop : null,
-                  child: new Text('Stop')
-                ),
-                new RaisedButton(
-                  onPressed: _running ? null : reset,
-                  child: new Text('Reset')
-                )
-              ],
+            new ClockControls(
+              running: _running,
+              currentTimeSeconds: _currentTimeSeconds,
+              startFunction: start,
+              stopFunction: stop,
+              resetFunction: reset
             )
           ],
         )

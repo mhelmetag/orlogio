@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'components/home.dart';
+import 'package:pomodoro_clock/screens/home.dart';
 
 void main() => runApp(new PomodoroClock());
 
