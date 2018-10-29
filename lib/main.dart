@@ -11,8 +11,9 @@ class PomodoroClock extends StatelessWidget {
       title: 'Pomodoro Clock',
       theme: new ThemeData(
         primarySwatch: Colors.red,
+        backgroundColor: Colors.grey
       ),
-      home: new Home(title: 'Pomodoro Clock'),
+      home: new Home(title: 'Pomodoro Clock')
     );
   }
 }

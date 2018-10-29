@@ -26,7 +26,7 @@ class ClockControls extends StatelessWidget {
           onPressed: running ? null : resetFunction,
           child: new Text('Reset')
         )
-      ],
+      ]
     );
   }
 }
