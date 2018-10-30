@@ -7,9 +7,8 @@ import '../components/clock_controls.dart';
 
 class Home extends StatefulWidget {
   final String title;
-  final Duration tickDuration;
 
-  Home({this.title, this.tickDuration = const Duration(seconds: 1)});
+  Home({this.title});
 
   @override
   _HomeState createState() => new _HomeState();
@@ -17,14 +16,21 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   Timer _timer;
+  int _workTimeSeconds;
+  int _breakTimeSeconds;
   int _currentTimeSeconds;
   bool _running;
+  bool _working;
 
   @override
   void initState() {
     super.initState();
-    _currentTimeSeconds = 300;
+
+    _workTimeSeconds = 1500; // 25 minutes
+    _breakTimeSeconds = 300; // 5 minutes
+    _currentTimeSeconds = _workTimeSeconds;
     _running = false;
+    _working = true;
   }
 
   @override
@@ -37,7 +43,7 @@ class _HomeState extends State<Home> {
     setState(() {
       _running = true;
     });
-    this._timer = new Timer.periodic(widget.tickDuration, tick);
+    this._timer = new Timer.periodic(const Duration(seconds: 1), tick);
   }
 
   void stop() {
@@ -49,13 +55,17 @@ class _HomeState extends State<Home> {
 
   void reset() {
     setState(() {
-      _currentTimeSeconds = 300;
+      _currentTimeSeconds = _workTimeSeconds;
+      _working = true;
     });
   }
 
   void tick(Timer time) {
     if (_currentTimeSeconds <= 0) {
-      stop();
+      setState(() {
+        _currentTimeSeconds = _working ? _breakTimeSeconds : _workTimeSeconds;
+        _working = !_working;
+      });
     } else {
       setState(() {
         _currentTimeSeconds--;
@@ -75,6 +85,12 @@ class _HomeState extends State<Home> {
         child: new Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            new Text(
+              _working ? 'Work' : 'Break',
+              style: TextStyle(
+                fontSize: 40
+              )
+            ),
             new Clock(currentTimeSeconds: _currentTimeSeconds),
             new ClockControls(
               running: _running,
@@ -83,7 +99,7 @@ class _HomeState extends State<Home> {
               stopFunction: stop,
               resetFunction: reset
             )
-          ],
+          ]
         )
       )
     );
