@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import '../components/clock.dart';
 import '../components/clock_controls.dart';
+import '../components/editable_minutes.dart';
 
 class Home extends StatefulWidget {
   final String title;
@@ -60,6 +61,44 @@ class _HomeState extends State<Home> {
     });
   }
 
+  void updateWorkTime(type) {
+    int newWorkTimeSeconds;
+
+    switch(type) {
+      case 'add':
+        newWorkTimeSeconds = _workTimeSeconds + 60;
+        break;
+      case 'remove':
+        newWorkTimeSeconds = _workTimeSeconds - 60;
+        break;
+      default:
+        throw ArgumentError;
+    }
+
+    setState(() {
+      _workTimeSeconds = newWorkTimeSeconds;
+    });
+  }
+
+  void updateBreakTime(type) {
+    int newBreakTimeSeconds;
+
+    switch(type) {
+      case 'add':
+        newBreakTimeSeconds = _breakTimeSeconds + 60;
+        break;
+      case 'remove':
+        newBreakTimeSeconds = _breakTimeSeconds - 60;
+        break;
+      default:
+        throw ArgumentError;
+    }
+
+    setState(() {
+      _breakTimeSeconds = newBreakTimeSeconds;
+    });
+  }
+
   void tick(Timer time) {
     if (_currentTimeSeconds <= 0) {
       setState(() {
@@ -75,29 +114,46 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      appBar: new AppBar(
-        title: new Center(
-          child: new Text(widget.title)
+    return Scaffold(
+      appBar: AppBar(
+        title: Center(
+          child: Text(widget.title)
         )
       ),
-      body: new Center(
-        child: new Column(
+      body: Center(
+        child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            new Text(
+            Text(
               _working ? 'Work' : 'Break',
               style: TextStyle(
                 fontSize: 40
               )
             ),
-            new Clock(currentTimeSeconds: _currentTimeSeconds),
-            new ClockControls(
+            Clock(currentTimeSeconds: _currentTimeSeconds),
+            ClockControls(
               running: _running,
               currentTimeSeconds: _currentTimeSeconds,
               startFunction: start,
               stopFunction: stop,
               resetFunction: reset
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: <Widget>[
+                EditableMinutes(
+                  labelText: 'Work Minutes',
+                  currentValueText: (_workTimeSeconds ~/ 60).toString(),
+                  addFunction: () { updateWorkTime('add'); },
+                  removeFunction: () { updateWorkTime('remove'); }
+                ),
+                EditableMinutes(
+                  labelText: 'Break Minutes',
+                  currentValueText: (_breakTimeSeconds ~/ 60).toString(),
+                  addFunction: () { updateBreakTime('add'); },
+                  removeFunction: () { updateBreakTime('remove'); }
+                )
+              ],
             )
           ]
         )

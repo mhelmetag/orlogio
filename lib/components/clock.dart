@@ -18,7 +18,7 @@ class Clock extends StatelessWidget {
 
   @override
   build(BuildContext context) {
-    return new Text(
+    return Text(
       stringTime(),
       style: TextStyle(fontSize: clockSize)
     );

@@ -11,18 +11,18 @@ class ClockControls extends StatelessWidget {
 
   @override
   build(BuildContext context) {
-    return new Row(
+    return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: <Widget>[
-        new RaisedButton(
+        RaisedButton(
           onPressed: (running || currentTimeSeconds == 0) ? null : startFunction,
           child: new Text('Start')
         ),
-        new RaisedButton(
+        RaisedButton(
           onPressed: running ? stopFunction : null,
           child: new Text('Stop')
         ),
-        new RaisedButton(
+        RaisedButton(
           onPressed: running ? null : resetFunction,
           child: new Text('Reset')
         )
