@@ -124,36 +124,45 @@ class _HomeState extends State<Home> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
-              _working ? 'Work' : 'Break',
-              style: TextStyle(
-                fontSize: 40
+            Container(
+              child: Text(
+                _working ? 'Work' : 'Break',
+                style: TextStyle(
+                  fontSize: 40
+                )
               )
             ),
-            Clock(currentTimeSeconds: _currentTimeSeconds),
-            ClockControls(
-              running: _running,
-              currentTimeSeconds: _currentTimeSeconds,
-              startFunction: start,
-              stopFunction: stop,
-              resetFunction: reset
+            Container(
+              child: Clock(clockTextSize: 100,currentTimeSeconds: _currentTimeSeconds)
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: <Widget>[
-                EditableMinutes(
-                  labelText: 'Work Minutes',
-                  currentValueText: (_workTimeSeconds ~/ 60).toString(),
-                  addFunction: () { updateWorkTime('add'); },
-                  removeFunction: () { updateWorkTime('remove'); }
-                ),
-                EditableMinutes(
-                  labelText: 'Break Minutes',
-                  currentValueText: (_breakTimeSeconds ~/ 60).toString(),
-                  addFunction: () { updateBreakTime('add'); },
-                  removeFunction: () { updateBreakTime('remove'); }
-                )
-              ],
+            Container(
+              child: ClockControls(
+                running: _running,
+                currentTimeSeconds: _currentTimeSeconds,
+                startFunction: start,
+                stopFunction: stop,
+                resetFunction: reset
+              )
+            ),
+            Container(
+              padding: EdgeInsets.only(top: 20),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: <Widget>[
+                  EditableMinutes(
+                    labelText: 'Work Minutes',
+                    currentValueText: (_workTimeSeconds ~/ 60).toString(),
+                    addFunction: () { updateWorkTime('add'); },
+                    removeFunction: () { updateWorkTime('remove'); }
+                  ),
+                  EditableMinutes(
+                    labelText: 'Break Minutes',
+                    currentValueText: (_breakTimeSeconds ~/ 60).toString(),
+                    addFunction: () { updateBreakTime('add'); },
+                    removeFunction: () { updateBreakTime('remove'); }
+                  )
+                ]
+              )
             )
           ]
         )

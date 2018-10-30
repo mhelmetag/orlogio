@@ -13,7 +13,10 @@ class EditableMinutes extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        Text(labelText),
+        Text(
+          labelText,
+          style: TextStyle(fontSize: 20)
+        ),
         RaisedButton(
           child: Icon(Icons.add),
           onPressed: addFunction

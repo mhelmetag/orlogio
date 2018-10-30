@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 class Clock extends StatelessWidget {
-  final double clockSize;
+  final double clockTextSize;
   final int currentTimeSeconds;
 
-  Clock({this.clockSize = 100, this.currentTimeSeconds});
+  Clock({this.clockTextSize, this.currentTimeSeconds});
 
   String stringTime() {
     var minutes = (currentTimeSeconds ~/ 60);
@@ -20,7 +20,7 @@ class Clock extends StatelessWidget {
   build(BuildContext context) {
     return Text(
       stringTime(),
-      style: TextStyle(fontSize: clockSize)
+      style: TextStyle(fontSize: clockTextSize)
     );
   }
 }
