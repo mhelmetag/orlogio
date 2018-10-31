@@ -6,7 +6,12 @@ class EditableMinutes extends StatelessWidget {
   final Function addFunction;
   final Function removeFunction;
 
-  EditableMinutes({this.labelText, this.currentValueText, this.addFunction, this.removeFunction});
+  EditableMinutes({
+    this.labelText,
+    this.currentValueText,
+    this.addFunction,
+    this.removeFunction,
+  });
 
   @override
   build(BuildContext context) {
@@ -15,17 +20,17 @@ class EditableMinutes extends StatelessWidget {
       children: <Widget>[
         Text(
           labelText,
-          style: TextStyle(fontSize: 20)
+          style: TextStyle(fontSize: 20),
         ),
         RaisedButton(
           child: Icon(Icons.add),
-          onPressed: addFunction
+          onPressed: addFunction,
         ),
         Text(currentValueText),
         RaisedButton(
           child: Icon(Icons.remove),
-          onPressed: removeFunction
-        )
+          onPressed: removeFunction,
+        ),
       ],
     );
   }

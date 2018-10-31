@@ -4,7 +4,10 @@ class Clock extends StatelessWidget {
   final double clockTextSize;
   final int currentTimeSeconds;
 
-  Clock({this.clockTextSize, this.currentTimeSeconds});
+  Clock({
+    this.clockTextSize,
+    this.currentTimeSeconds,
+  });
 
   String stringTime() {
     var minutes = (currentTimeSeconds ~/ 60);
@@ -20,7 +23,7 @@ class Clock extends StatelessWidget {
   build(BuildContext context) {
     return Text(
       stringTime(),
-      style: TextStyle(fontSize: clockTextSize)
+      style: TextStyle(fontSize: clockTextSize),
     );
   }
 }
