@@ -10,41 +10,23 @@ class HomeView extends HomeState {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Center(
-          child: Text(widget.title),
-        ),
+        title: Text(widget.title),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Container(
-              child: Text(
-                working ? 'Work' : 'Break',
-                style: TextStyle(
-                  fontSize: 40,
-                ),
-              ),
+            Clock(
+              currentTimeSeconds: currentTimeSeconds,
+            ),
+            ClockControls(
+              running: running,
+              currentTimeSeconds: currentTimeSeconds,
+              startFunction: start,
+              stopFunction: stop,
+              resetFunction: reset,
             ),
             Container(
-              child: Clock(
-                clockTextSize: 100,
-                currentTimeSeconds: currentTimeSeconds,
-              ),
-            ),
-            Container(
-              child: ClockControls(
-                running: running,
-                currentTimeSeconds: currentTimeSeconds,
-                startFunction: start,
-                stopFunction: stop,
-                resetFunction: reset,
-              ),
-            ),
-            Container(
-              padding: EdgeInsets.only(
-                top: 20,
-              ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: <Widget>[
@@ -52,20 +34,20 @@ class HomeView extends HomeState {
                     labelText: 'Work Minutes',
                     currentValueText: (workTimeSeconds ~/ 60).toString(),
                     addFunction: () {
-                      updateTime('add', 'work');
+                      updateWorkTime('add');
                     },
                     removeFunction: () {
-                      updateTime('remove', 'work');
+                      updateWorkTime('remove');
                     },
                   ),
                   EditableMinutes(
                     labelText: 'Break Minutes',
                     currentValueText: (breakTimeSeconds ~/ 60).toString(),
                     addFunction: () {
-                      updateTime('add', 'break');
+                      updateBreakTime('add');
                     },
                     removeFunction: () {
-                      updateTime('remove', 'break');
+                      updateBreakTime('remove');
                     },
                   ),
                 ],

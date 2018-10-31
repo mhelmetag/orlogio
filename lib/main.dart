@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:pomodoro_clock/screens/home.dart';
+import 'package:pomodoro_clock/screens/home_screen.dart';
 
 void main() => runApp(new PomodoroClock());
 
@@ -13,7 +13,7 @@ class PomodoroClock extends StatelessWidget {
         primarySwatch: Colors.red,
         backgroundColor: Colors.grey
       ),
-      home: new Home(title: 'Pomodoro Clock')
+      home: new HomeScreen(title: 'Pomodoro Clock')
     );
   }
 }

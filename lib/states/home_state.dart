@@ -2,9 +2,9 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
-import '../screens/home.dart';
+import '../screens/home_screen.dart';
 
-abstract class HomeState extends State<Home> {
+abstract class HomeState extends State<HomeScreen> {
   @protected
   Timer timer;
   Duration tickDuration = new Duration(seconds: 1);
@@ -45,24 +45,24 @@ abstract class HomeState extends State<Home> {
   }
 
   @protected
-  void updateTime(String action, String timeRef) {
-    if (_shouldUpdateTime(timeRef)) {
-      int seconds = _secondsForTimeUpdate(action);
+  void updateWorkTime(String action) {
+    int seconds = _secondsForTimeUpdate(action);
 
-      switch (timeRef) {
-        case ('work'):
-          setState(() {
-            workTimeSeconds = workTimeSeconds + seconds;
-          });
-          break;
-        case ('break'):
-          setState(() {
-            breakTimeSeconds = breakTimeSeconds + seconds;
-          });
-          break;
-        default:
-          throw ArgumentError;
-      }
+    if (_addableTime(action, workTimeSeconds) || _removableTime(action, workTimeSeconds)) {
+      setState(() {
+        workTimeSeconds = workTimeSeconds + seconds;
+      });
+    }
+  }
+
+  @protected
+  void updateBreakTime(String action) {
+    int seconds = _secondsForTimeUpdate(action);
+
+    if (_addableTime(action, breakTimeSeconds) || _removableTime(action, breakTimeSeconds)) {
+      setState(() {
+        breakTimeSeconds = breakTimeSeconds + seconds;
+      });
     }
   }
 
@@ -79,37 +79,28 @@ abstract class HomeState extends State<Home> {
     }
   }
 
-  bool _shouldUpdateTime(timeRef) {
-    bool shouldUpdateTime;
-
-    switch (timeRef) {
-      case ('work'):
-        shouldUpdateTime = workTimeSeconds <= 1 && workTimeSeconds >= 59;
+  int _secondsForTimeUpdate(String action) {
+    switch(action) {
+      case('add'):
+        return 60;
         break;
-      case ('break'):
-        shouldUpdateTime = breakTimeSeconds <= 1 && breakTimeSeconds >= 59;
+      case('remove'):
+        return -60;
         break;
       default:
         throw ArgumentError;
     }
-
-    return shouldUpdateTime;
   }
 
-  int _secondsForTimeUpdate(String action) {
-    int seconds;
+  bool _addableTime(String action, int timeSeconds) {
+    int timeMinutes = timeSeconds ~/ 60;
 
-    switch (action) {
-      case ('add'):
-        seconds = 60;
-        break;
-      case ('remove'):
-        seconds = -60;
-        break;
-      default:
-        throw ArgumentError;
-    }
+    return action == 'add' && timeMinutes <= 58;
+  }
 
-    return seconds;
+  bool _removableTime(String action, int timeSeconds) {
+    int timeMinutes = timeSeconds ~/ 60;
+
+    return action == 'remove' && timeMinutes >= 2;
   }
 }
