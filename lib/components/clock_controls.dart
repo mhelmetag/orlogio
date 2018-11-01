@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../colors.dart';
+
 class ClockControls extends StatelessWidget {
   final bool running;
   final int currentTimeSeconds;
@@ -17,23 +19,28 @@ class ClockControls extends StatelessWidget {
 
   @override
   build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
-      children: <Widget>[
-        RaisedButton(
-          onPressed:
-              (running || currentTimeSeconds == 0) ? null : startFunction,
-          child: new Text('Start'),
-        ),
-        RaisedButton(
-          onPressed: running ? stopFunction : null,
-          child: new Text('Stop'),
-        ),
-        RaisedButton(
-          onPressed: running ? null : resetFunction,
-          child: new Text('Reset'),
-        ),
-      ],
+    return Container(
+      padding: EdgeInsets.only(top: 15, right: 10, bottom: 15, left: 10),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: <Widget>[
+          RaisedButton(
+            onPressed: running ? null : startFunction,
+            child: new Text('Start'),
+            color: kPomodoroGreen,
+          ),
+          RaisedButton(
+            onPressed: running ? stopFunction : null,
+            child: new Text('Stop'),
+            color: kPomodoroGreen,
+          ),
+          RaisedButton(
+            onPressed: running ? null : resetFunction,
+            child: new Text('Reset'),
+            color: kPomodoroGreen,
+          ),
+        ],
+      ),
     );
   }
 }

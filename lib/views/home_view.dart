@@ -31,8 +31,8 @@ class HomeView extends HomeState {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: <Widget>[
                   EditableMinutes(
-                    labelText: 'Work Minutes',
-                    currentValueText: (workTimeSeconds ~/ 60).toString(),
+                    labelText: 'Work',
+                    currentMinutesText: (workTimeSeconds ~/ 60).toString(),
                     addFunction: () {
                       updateWorkTime('add');
                     },
@@ -41,8 +41,8 @@ class HomeView extends HomeState {
                     },
                   ),
                   EditableMinutes(
-                    labelText: 'Break Minutes',
-                    currentValueText: (breakTimeSeconds ~/ 60).toString(),
+                    labelText: 'Break',
+                    currentMinutesText: (breakTimeSeconds ~/ 60).toString(),
                     addFunction: () {
                       updateBreakTime('add');
                     },
