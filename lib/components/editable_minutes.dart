@@ -30,6 +30,7 @@ class EditableMinutes extends StatelessWidget {
       height: 150,
       decoration: BoxDecoration(
         color: kOrlogioGreen,
+        borderRadius: BorderRadius.circular(2.5),
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
