@@ -3,20 +3,20 @@ import 'package:flutter/material.dart';
 import '../colors.dart';
 
 class EditableMinutes extends StatelessWidget {
-  final String labelText;
-  final String currentMinutesText;
+  final String label;
+  final String currentMinutes;
   final Function addFunction;
   final Function removeFunction;
 
   EditableMinutes({
-    this.labelText,
-    this.currentMinutesText,
+    this.label,
+    this.currentMinutes,
     this.addFunction,
     this.removeFunction,
   });
 
-  String _minuteString() {
-    if (currentMinutesText == "1") {
+  String _currentMinutesLabel() {
+    if (currentMinutes == "1") {
       return "minute";
     } else {
       return "minutes";
@@ -25,34 +25,31 @@ class EditableMinutes extends StatelessWidget {
 
   @override
   build(BuildContext context) {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(25),
-      child: Container(
-        width: 110,
-        height: 150,
-        decoration: BoxDecoration(
-          color: kPomodoroGreen,
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              labelText,
-              style: TextStyle(fontSize: 20),
-            ),
-            RaisedButton(
-              child: Icon(Icons.add),
-              onPressed: addFunction,
-              color: kPomodoroGreenDark,
-            ),
-            Text("$currentMinutesText ${_minuteString()}"),
-            RaisedButton(
-              child: Icon(Icons.remove),
-              onPressed: removeFunction,
-              color: kPomodoroGreenDark,
-            ),
-          ],
-        ),
+    return Container(
+      width: 100,
+      height: 150,
+      decoration: BoxDecoration(
+        color: kOrlogioGreen,
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Text(
+            label,
+            style: TextStyle(fontSize: 20),
+          ),
+          RaisedButton(
+            child: Icon(Icons.add),
+            onPressed: addFunction,
+            color: kOrlogioGreenDark,
+          ),
+          Text("$currentMinutes ${_currentMinutesLabel()}"),
+          RaisedButton(
+            child: Icon(Icons.remove),
+            onPressed: removeFunction,
+            color: kOrlogioGreenDark,
+          ),
+        ],
       ),
     );
   }

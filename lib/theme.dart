@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 
 import 'colors.dart';
 
-final ThemeData kPomodoroTheme = _buildPomodoroTheme();
+final ThemeData kOrlogioTheme = _buildOrlogioTheme();
 
-ThemeData _buildPomodoroTheme() {
+ThemeData _buildOrlogioTheme() {
   final ThemeData base = ThemeData.light();
   return base.copyWith(
-    accentColor: kPomodoroGreenDark,
-    primaryColor: kPomodoroRed,
-    scaffoldBackgroundColor: kPomodoroBackgroundWhite,
+    accentColor: kOrlogioRedLight,
+    primaryColor: kOrlogioGreenLight,
+    scaffoldBackgroundColor: kOrlogioGreenLight,
   );
 }

@@ -25,10 +25,10 @@ class Clock extends StatelessWidget {
       height: 250,
       width: 250,
       decoration: BoxDecoration(
-        color: kPomodoroGreenDark,
+        color: kOrlogioGreenDark,
         shape: BoxShape.circle,
         border: Border.all(
-          color: kPomodoroGreen,
+          color: kOrlogioGreen,
           width: 5,
         ),
       ),

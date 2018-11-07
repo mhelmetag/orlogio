@@ -1,4 +1,4 @@
-package tech.maxworld.pomodoroclock;
+package tech.maxworld.orlogio;
 
 import android.os.Bundle;
 import io.flutter.app.FlutterActivity;

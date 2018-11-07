@@ -4,18 +4,22 @@ import '../states/home_state.dart';
 import '../components/clock.dart';
 import '../components/clock_controls.dart';
 import '../components/editable_minutes.dart';
+import '../components/status_text.dart';
+import '../colors.dart';
 
 class HomeView extends HomeState {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
+      backgroundColor: kOrlogioGreenLight,
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
+            StatusText(
+              running: running,
+              working: working,
+            ),
             Clock(
               currentTimeSeconds: currentTimeSeconds,
             ),
@@ -31,8 +35,8 @@ class HomeView extends HomeState {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: <Widget>[
                   EditableMinutes(
-                    labelText: 'Work',
-                    currentMinutesText: (workTimeSeconds ~/ 60).toString(),
+                    label: 'Work',
+                    currentMinutes: (workTimeSeconds ~/ 60).toString(),
                     addFunction: () {
                       updateWorkTime('add');
                     },
@@ -41,8 +45,8 @@ class HomeView extends HomeState {
                     },
                   ),
                   EditableMinutes(
-                    labelText: 'Break',
-                    currentMinutesText: (breakTimeSeconds ~/ 60).toString(),
+                    label: 'Rest',
+                    currentMinutes: (breakTimeSeconds ~/ 60).toString(),
                     addFunction: () {
                       updateBreakTime('add');
                     },

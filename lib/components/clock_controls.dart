@@ -20,24 +20,24 @@ class ClockControls extends StatelessWidget {
   @override
   build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(top: 15, right: 10, bottom: 15, left: 10),
+//      padding: EdgeInsets.only(top: 20, right: 10, bottom: 20, left: 10),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: <Widget>[
           RaisedButton(
             onPressed: running ? null : startFunction,
-            child: new Text('Start'),
-            color: kPomodoroGreen,
+            child: Text('Start'),
+            color: kOrlogioGreen,
           ),
           RaisedButton(
             onPressed: running ? stopFunction : null,
-            child: new Text('Stop'),
-            color: kPomodoroGreen,
+            child: Text('Stop'),
+            color: kOrlogioRedLight,
           ),
           RaisedButton(
             onPressed: running ? null : resetFunction,
-            child: new Text('Reset'),
-            color: kPomodoroGreen,
+            child: Text('Reset'),
+            color: kOrlogioGreen,
           ),
         ],
       ),
