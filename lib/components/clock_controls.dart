@@ -20,7 +20,6 @@ class ClockControls extends StatelessWidget {
   @override
   build(BuildContext context) {
     return Container(
-//      padding: EdgeInsets.only(top: 20, right: 10, bottom: 20, left: 10),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: <Widget>[

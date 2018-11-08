@@ -48,7 +48,8 @@ abstract class HomeState extends State<HomeScreen> {
   void updateWorkTime(String action) {
     int seconds = _secondsForTimeUpdate(action);
 
-    if (_addableTime(action, workTimeSeconds) || _removableTime(action, workTimeSeconds)) {
+    if (_addableTime(action, workTimeSeconds) ||
+        _removableTime(action, workTimeSeconds)) {
       setState(() {
         workTimeSeconds = workTimeSeconds + seconds;
       });
@@ -59,7 +60,8 @@ abstract class HomeState extends State<HomeScreen> {
   void updateBreakTime(String action) {
     int seconds = _secondsForTimeUpdate(action);
 
-    if (_addableTime(action, breakTimeSeconds) || _removableTime(action, breakTimeSeconds)) {
+    if (_addableTime(action, breakTimeSeconds) ||
+        _removableTime(action, breakTimeSeconds)) {
       setState(() {
         breakTimeSeconds = breakTimeSeconds + seconds;
       });
@@ -80,11 +82,11 @@ abstract class HomeState extends State<HomeScreen> {
   }
 
   int _secondsForTimeUpdate(String action) {
-    switch(action) {
-      case('add'):
+    switch (action) {
+      case ('add'):
         return 60;
         break;
-      case('remove'):
+      case ('remove'):
         return -60;
         break;
       default:
